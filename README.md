@@ -1,7 +1,13 @@
-# Dashboard test app
+# Dashboard mvp app
 
 An interactive dashboard builder featuring drag-and-drop blocks (text, line chart, bar chart).  
 Each block has a fixed 1*1 size, supports movement animations and safe fallback mechanisms.
+
+## 🌐 Deployment
+
+The project is deployed on Vercel and available at:
+
+👉 https://dashboard-mvp-app.vercel.app
 
 ## Features
 
