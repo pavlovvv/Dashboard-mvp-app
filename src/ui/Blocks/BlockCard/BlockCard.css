@@ -1,0 +1,75 @@
+.block {
+  height: 100%;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: linear-gradient(145deg, var(--card-bg), var(--card-bg-alt));
+  position: relative;
+  cursor: pointer;
+}
+
+.block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.block__title {
+  font-weight: 600;
+}
+
+.block__delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 50px;
+  height: 20px;
+  border-radius: 20%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(5, 8, 22, 0.9);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: grab;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.15s ease;
+}
+
+.dashboard__cell:hover .block__delete {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.block__delete:hover {
+  background: rgba(220, 86, 109, 0.9);
+  color: #ffffff;
+}
+
+.block__delete:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.block__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.block__text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.block--text .block__body {
+  justify-content: flex-start;
+}

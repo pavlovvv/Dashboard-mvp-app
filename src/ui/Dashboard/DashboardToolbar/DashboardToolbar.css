@@ -1,0 +1,36 @@
+.dashboard__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.dashboard__button {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0c1632;
+  color: var(--text-main);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.15s ease;
+}
+
+.block--dragging {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dashboard__button:hover {
+  background: #151f3d;
+  border-color: var(--accent-soft);
+}
+
+.dashboard__button:active {
+  transform: translateY(1px) scale(0.99);
+}

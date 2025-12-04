@@ -1,0 +1,14 @@
+.block__chart {
+  flex: 1;
+  min-height: 0;
+}
+
+.block__chart,
+.block__chart * {
+  cursor: grab;
+}
+
+.block__chart:active svg,
+.block__chart:active svg * {
+  cursor: grabbing;
+}
