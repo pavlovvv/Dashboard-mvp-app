@@ -5,10 +5,11 @@ import {useDashboard} from "blocks/imports.ts";
 import {ChartBuilder} from "blocks/ChartBuilder/ChartBuilder.tsx";
 import {blockLabels} from "blocks/constants.ts";
 import {BlockType} from "blocks/types.ts";
+import {BlockType as TextBlockType} from "blocks/imports";
 
 interface BlockCardProps {
   index: number;
-  type: BlockType;
+  type: TextBlockType;
   chartId?: string;
 }
 
