@@ -37,7 +37,9 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         this.props.fallback ?? (
           <div className="error-boundary">
-            <h2 className="error-boundary__title">Oops... Something went wrong with our charts</h2>
+            <h2 className="error-boundary__title">
+              Oops... Something went wrong with our charts
+            </h2>
             <pre className="error-boundary__message">
               {this.state.error?.message ?? "Unknown error"}
             </pre>

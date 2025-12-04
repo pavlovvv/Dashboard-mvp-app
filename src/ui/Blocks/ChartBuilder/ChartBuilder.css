@@ -1,0 +1,45 @@
+.chart-builder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.chart-builder__inner {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-builder__fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: rgba(8, 13, 30, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(193, 214, 255, 0.7);
+  text-align: center;
+}
+
+.chart-builder__fallback--error {
+  border-color: rgba(255, 107, 107, 0.6);
+  color: #ffd8d8;
+  background: rgba(40, 10, 10, 0.9);
+}
+
+.chart-builder__fallback--loading {
+  border-style: solid;
+  border-color: rgba(78, 141, 245, 0.5);
+}
+
+.chart-builder__fallback--unknown {
+  border-style: dashed;
+  border-color: rgba(255, 193, 7, 0.5);
+  color: #ffe29b;
+}

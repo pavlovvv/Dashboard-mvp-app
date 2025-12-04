@@ -8,43 +8,39 @@ import {
   Tooltip,
 } from "recharts";
 import "./BarChartBlock.css";
-import type { BarChartPoint } from "blocks/types.ts";
-import {
-  chartColors,
-  chartGrid,
-  chartFontConfiguration,
-  defaultBarChartMargin,
-  defaultBarRadius,
-} from "blocks/constants.ts";
+import type { BarChartPoint, ChartConfig } from "blocks/types.ts";
 
 interface BarChartBlockProps {
   barData: BarChartPoint[];
-  color?: string;
-  showGrid?: boolean;
+  appearance: ChartConfig["appearance"];
 }
 
-export const BarChartBlock = ({
-  barData,
-  color = chartColors.barPrimary,
-  showGrid = true,
-}: BarChartBlockProps) => {
+export const BarChartBlock = ({ barData, appearance }: BarChartBlockProps) => {
+  const {
+    axisColor,
+    gridColor,
+    fontSize,
+    strokeDasharray,
+    margin,
+    color,
+    barRadius,
+    showGrid = true,
+  } = appearance;
+
   return (
     <div className="block__chart">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={barData} margin={defaultBarChartMargin}>
+        <BarChart data={barData} margin={margin}>
           {showGrid && (
-            <CartesianGrid
-              strokeDasharray={chartGrid.strokeDasharray}
-              stroke={chartColors.grid}
-            />
+            <CartesianGrid strokeDasharray={strokeDasharray} stroke={gridColor} />
           )}
 
-          <XAxis dataKey="name" stroke={chartColors.axis} tick={chartFontConfiguration} />
-          <YAxis stroke={chartColors.axis} tick={chartFontConfiguration} />
+          <XAxis dataKey="name" stroke={axisColor} tick={{ fontSize }} />
+          <YAxis stroke={axisColor} tick={{ fontSize }} />
 
           <Tooltip />
 
-          <Bar dataKey="value" fill={color} radius={defaultBarRadius} />
+          <Bar dataKey="value" fill={color} radius={barRadius} />
         </BarChart>
       </ResponsiveContainer>
     </div>

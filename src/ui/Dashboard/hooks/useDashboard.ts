@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import type { DashboardContextValue } from "dashboard/types.ts";
-import {DashboardContext} from  "dashboard/DashboardProvider/DashboardContext.ts";
+import { DashboardContext } from "dashboard/DashboardProvider/DashboardContext.ts";
 
 export const useDashboard = (): DashboardContextValue => {
   const context = useContext(DashboardContext);

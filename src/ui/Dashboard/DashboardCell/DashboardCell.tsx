@@ -51,7 +51,7 @@ export const DashboardCell = ({ index, block }: DashboardCellProps) => {
       onDrop={handleDrop}
     >
       {block ? (
-        <BlockCard type={block.type} index={index} />
+        <BlockCard type={block.type} chartId={block.chartId} index={index} />
       ) : (
         <div className="dashboard__placeholder">Drop here</div>
       )}

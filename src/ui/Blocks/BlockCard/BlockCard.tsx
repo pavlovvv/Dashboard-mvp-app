@@ -1,17 +1,18 @@
-import { memo, type DragEvent, type MouseEvent } from "react";
+import {type DragEvent, memo, type MouseEvent} from "react";
 import "./BlockCard.css";
-import { TextBlock } from "blocks/TextBlock/TextBlock.tsx";
-import { LineChartBlock } from "blocks/LineChartBlock/LineChartBlock.tsx";
-import { BarChartBlock } from "blocks/BarChartBlock/BarChartBlock.tsx";
-import { barData, blockLabels, lineData } from "blocks/constants.ts";
-import {type BlockType, useDashboard} from "blocks/imports.ts";
+import {TextBlock} from "blocks/TextBlock/TextBlock.tsx";
+import {useDashboard} from "blocks/imports.ts";
+import {ChartBuilder} from "blocks/ChartBuilder/ChartBuilder.tsx";
+import {blockLabels} from "blocks/constants.ts";
+import {BlockType} from "blocks/types.ts";
 
 interface BlockCardProps {
   index: number;
   type: BlockType;
+  chartId?: string;
 }
 
-const BlockCard = ({ type, index }: BlockCardProps) => {
+const BlockCard = ({ type, index, chartId }: BlockCardProps) => {
   const { deleteBlock } = useDashboard();
 
   const handleDragStart = (event: DragEvent<HTMLDivElement>) => {
@@ -24,17 +25,16 @@ const BlockCard = ({ type, index }: BlockCardProps) => {
     deleteBlock(index);
   };
 
-  const renderContent = () => {
-    switch (type) {
-      case "text":
-        return <TextBlock />;
-      case "line":
-        return <LineChartBlock lineData={lineData} />;
-      case "bar":
-        return <BarChartBlock barData={barData} />;
-      default:
-        return null;
+  const render = () => {
+    if (type === BlockType.TEXT) {
+      return <TextBlock />;
     }
+
+    if ((type === BlockType.LINE || type === BlockType.BAR) && chartId) {
+      return <ChartBuilder chartId={chartId} />;
+    }
+
+    return <div className="block__fallback">No renderer configured for this block.</div>;
   };
 
   return (
@@ -43,16 +43,22 @@ const BlockCard = ({ type, index }: BlockCardProps) => {
         <div className="block__title">{blockLabels[type]}</div>
       </div>
 
-      <button className="block__delete" onClick={handleDeleteClick}>
+      <button
+        className="block__delete"
+        type="button"
+        aria-label="Delete block"
+        onClick={handleDeleteClick}
+      >
         Delete
       </button>
 
-      <div className="block__body">{renderContent()}</div>
+      <div className="block__body">{render()}</div>
     </div>
   );
 };
 
 export default memo(
   BlockCard,
-  (prev, next) => prev.type === next.type && prev.index === next.index,
+  (prev, next) =>
+    prev.type === next.type && prev.index === next.index && prev.chartId === next.chartId,
 );

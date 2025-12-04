@@ -8,41 +8,36 @@ import {
   Tooltip,
 } from "recharts";
 import "./LineChartBlock.css";
-import type { LineChartPoint } from "blocks/types.ts";
-import {
-  chartColors,
-  chartGrid,
-  chartFontConfiguration,
-  defaultDBMargin,
-  defaultLineWidth,
-} from "blocks/constants.ts";
+import type { LineChartPoint, ChartConfig } from "blocks/types.ts";
 
 interface LineChartBlockProps {
   lineData: LineChartPoint[];
-  color?: string;
-  showGrid?: boolean;
-  showDots?: boolean;
+  appearance: ChartConfig["appearance"];
 }
 
-export const LineChartBlock = ({
-  lineData,
-  color,
-  showGrid = true,
-  showDots = false,
-}: LineChartBlockProps) => {
+export const LineChartBlock = ({ lineData, appearance }: LineChartBlockProps) => {
+  const {
+    axisColor,
+    gridColor,
+    fontSize,
+    strokeDasharray,
+    margin,
+    color,
+    lineWidth,
+    showGrid = true,
+    showDots = false,
+  } = appearance;
+
   return (
     <div className="block__chart">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={lineData} margin={defaultDBMargin}>
+        <LineChart data={lineData} margin={margin}>
           {showGrid && (
-            <CartesianGrid
-              strokeDasharray={chartGrid.strokeDasharray}
-              stroke={chartColors.grid}
-            />
+            <CartesianGrid strokeDasharray={strokeDasharray} stroke={gridColor} />
           )}
 
-          <XAxis dataKey="name" stroke={chartColors.axis} tick={chartFontConfiguration} />
-          <YAxis stroke={chartColors.axis} tick={chartFontConfiguration} />
+          <XAxis dataKey="name" stroke={axisColor} tick={{ fontSize }} />
+          <YAxis stroke={axisColor} tick={{ fontSize }} />
 
           <Tooltip />
 
@@ -50,7 +45,7 @@ export const LineChartBlock = ({
             type="monotone"
             dataKey="value"
             stroke={color}
-            strokeWidth={defaultLineWidth}
+            strokeWidth={lineWidth}
             dot={showDots}
           />
         </LineChart>

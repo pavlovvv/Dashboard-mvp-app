@@ -3,6 +3,7 @@ export type BlockType = "line" | "bar" | "text";
 export interface Block {
   id: string;
   type: BlockType;
+  chartId?: string;
 }
 
 export type Cell = Block | null;
